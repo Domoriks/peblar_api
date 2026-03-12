@@ -108,3 +108,8 @@ Before requesting inclusion in default HACS repositories, make sure your GitHub 
 - Add a clear repository description.
 - Add relevant topics like `home-assistant`, `hacs`, `homeassistant-integration`.
 - Publish GitHub releases for versioned installs.
+
+## License
+
+This project is open source and licensed under the MIT License.
+See `LICENSE` for full text.
