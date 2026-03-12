@@ -1,0 +1,15 @@
+{
+  "domain": "peblar_api",
+  "name": "Peblar API",
+  "config_flow": true,
+  "documentation": "https://github.com/domoriks/peblar_api",
+  "issue_tracker": "https://github.com/domoriks/peblar_api/issues",
+  "codeowners": [
+    "@domoriks"
+  ],
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "loggers": ["custom_components.peblar_api"],
+  "requirements": [],
+  "version": "0.1.0"
+}

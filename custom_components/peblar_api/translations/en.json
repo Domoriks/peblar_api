@@ -1,0 +1,23 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Peblar API charger",
+        "description": "Enter the charger IP address and local API token.",
+        "data": {
+          "host": "IP address or hostname",
+          "api_token": "API token"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect",
+      "invalid_auth": "Invalid API token",
+      "invalid_input": "IP address and API token are required",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "already_configured": "This Peblar charger is already configured"
+    }
+  }
+}
