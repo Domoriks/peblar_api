@@ -3,7 +3,7 @@
 Home Assistant custom integration for local monitoring and control of a Peblar EV charger via the REST API.
 
 [![Open your Home Assistant instance and open this repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=domoriks&repository=peblar_api&category=integration)
-[![Open your Home Assistant instance and start setting up Peblar API.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=peblar_api)
+<!-- [![Open your Home Assistant instance and start setting up Peblar API.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=peblar_api) -->
 
 ## Disclaimer
 
