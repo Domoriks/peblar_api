@@ -19,5 +19,15 @@
     "abort": {
       "already_configured": "This Peblar charger is already configured"
     }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Peblar API options",
+        "data": {
+          "scan_interval": "Polling interval (seconds)"
+        }
+      }
+    }
   }
 }

@@ -18,7 +18,7 @@ from .api import (
     PeblarApiClientConnectionError,
     PeblarApiClientError,
 )
-from .const import DEFAULT_SCAN_INTERVAL, DOMAIN
+from .const import CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL, DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -36,11 +36,12 @@ class PeblarDataUpdateCoordinator(DataUpdateCoordinator[dict[str, dict[str, Any]
         self.entry = entry
         self.api = api
 
+        interval = entry.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)
         super().__init__(
             hass,
             _LOGGER,
             name=DOMAIN,
-            update_interval=timedelta(seconds=DEFAULT_SCAN_INTERVAL),
+            update_interval=timedelta(seconds=interval),
         )
 
     async def _async_update_data(self) -> dict[str, dict[str, Any]]:
