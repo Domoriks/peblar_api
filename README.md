@@ -37,12 +37,23 @@ Home Assistant custom integration for local monitoring and control of a Peblar E
 
 ## Configuration
 
+### Enable local REST API first
+
+Before adding the integration in Home Assistant, enable the local REST API on your charger and create a token.
+
+- Follow the Peblar documentation: https://developer.peblar.com/local-rest-api#section/General
+- Enable the local REST API on the charger.
+- Create an API token with **Read/Write** permissions.
+
+> Important: The API token must be **Read/Write**. A read-only token is not enough for charger control features (for example setting charge current limit).
+
+![Peblar local API enable screen](api_enable.png)
+
 1. Go to `Settings -> Devices & Services`.
 2. Click `Add Integration`.
 3. Search for `Peblar API`.
-4. Enter:
-   - `IP address or hostname`
-   - `API token`
+4. Enter `IP address or hostname`.
+5. Enter `API token` (must have **Read/Write** permissions).
 
 ## Entities
 
