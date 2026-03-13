@@ -51,8 +51,12 @@ class PeblarChargeCurrentLimit(CoordinatorEntity[PeblarDataUpdateCoordinator], N
 
     async def async_set_native_value(self, value: float) -> None:
         """Set the charge current limit (converts A to mA for the API)."""
-        await self.coordinator.api.patch_evinterface({"ChargeCurrentLimit": int(value * 1000)})
-        await self.coordinator.async_request_refresh()
+        updated = await self.coordinator.api.patch_evinterface({"ChargeCurrentLimit": int(value * 1000)})
+        if isinstance(updated, dict) and updated:
+            self.coordinator.data["evinterface"].update(updated)
+            self.coordinator.async_set_updated_data(self.coordinator.data)
+        else:
+            await self.coordinator.async_request_refresh()
 
     @property
     def device_info(self) -> DeviceInfo:

@@ -23,9 +23,13 @@
   "options": {
     "step": {
       "init": {
-        "title": "Peblar API options",
+        "title": "Peblar API polling intervals",
         "data": {
-          "scan_interval": "Polling interval (seconds)"
+          "interval_evinterface_charging": "EV interface interval while charging (seconds)",
+          "interval_evinterface_idle": "EV interface interval while idle (seconds)",
+          "interval_system": "System interval (seconds)",
+          "interval_meter_charging": "Meter interval while charging (seconds)",
+          "interval_meter_idle": "Meter interval while idle (seconds)"
         }
       }
     }

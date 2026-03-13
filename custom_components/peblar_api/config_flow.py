@@ -17,7 +17,20 @@ from .api import (
     PeblarApiClientConnectionError,
     PeblarApiClientError,
 )
-from .const import CONF_API_TOKEN, CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL, DOMAIN, MAX_SCAN_INTERVAL, MIN_SCAN_INTERVAL
+from .const import (
+    CONF_API_TOKEN,
+    CONF_INTERVAL_EVINTERFACE_CHARGING,
+    CONF_INTERVAL_EVINTERFACE_IDLE,
+    CONF_INTERVAL_METER_CHARGING,
+    CONF_INTERVAL_METER_IDLE,
+    CONF_INTERVAL_SYSTEM,
+    DOMAIN,
+    SCAN_INTERVAL_EVINTERFACE_CHARGING,
+    SCAN_INTERVAL_EVINTERFACE_IDLE,
+    SCAN_INTERVAL_METER_CHARGING,
+    SCAN_INTERVAL_METER_IDLE,
+    SCAN_INTERVAL_SYSTEM,
+)
 
 _USER_SCHEMA = vol.Schema(
     {
@@ -96,17 +109,31 @@ class PeblarOptionsFlow(config_entries.OptionsFlow):
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
 
-        current_interval = self.config_entry.options.get(
-            CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL
-        )
+        opts = self.config_entry.options
         return self.async_show_form(
             step_id="init",
             data_schema=vol.Schema(
                 {
                     vol.Required(
-                        CONF_SCAN_INTERVAL,
-                        default=current_interval,
-                    ): vol.All(vol.Coerce(int), vol.Range(min=MIN_SCAN_INTERVAL, max=MAX_SCAN_INTERVAL)),
+                        CONF_INTERVAL_EVINTERFACE_CHARGING,
+                        default=opts.get(CONF_INTERVAL_EVINTERFACE_CHARGING, SCAN_INTERVAL_EVINTERFACE_CHARGING),
+                    ): vol.All(vol.Coerce(int), vol.Range(min=1)),
+                    vol.Required(
+                        CONF_INTERVAL_EVINTERFACE_IDLE,
+                        default=opts.get(CONF_INTERVAL_EVINTERFACE_IDLE, SCAN_INTERVAL_EVINTERFACE_IDLE),
+                    ): vol.All(vol.Coerce(int), vol.Range(min=1)),
+                    vol.Required(
+                        CONF_INTERVAL_SYSTEM,
+                        default=opts.get(CONF_INTERVAL_SYSTEM, SCAN_INTERVAL_SYSTEM),
+                    ): vol.All(vol.Coerce(int), vol.Range(min=60)),
+                    vol.Required(
+                        CONF_INTERVAL_METER_CHARGING,
+                        default=opts.get(CONF_INTERVAL_METER_CHARGING, SCAN_INTERVAL_METER_CHARGING),
+                    ): vol.All(vol.Coerce(int), vol.Range(min=1)),
+                    vol.Required(
+                        CONF_INTERVAL_METER_IDLE,
+                        default=opts.get(CONF_INTERVAL_METER_IDLE, SCAN_INTERVAL_METER_IDLE),
+                    ): vol.All(vol.Coerce(int), vol.Range(min=1)),
                 }
             ),
         )

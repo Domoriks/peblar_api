@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import logging
 from http import HTTPStatus
 from typing import Any
 
 import aiohttp
+
+_LOGGER = logging.getLogger(__name__)
 
 
 class PeblarApiClientError(Exception):
