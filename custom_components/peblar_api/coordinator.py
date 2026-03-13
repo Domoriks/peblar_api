@@ -96,6 +96,14 @@ class PeblarDataUpdateCoordinator(DataUpdateCoordinator[dict[str, dict[str, Any]
             or (now - self._last_meter_update).total_seconds() >= meter_interval
         )
 
+        _LOGGER.debug(
+            "Update cycle | charging=%s | fetch evinterface=%s system=%s meter=%s",
+            charging,
+            fetch_evinterface,
+            fetch_system,
+            fetch_meter,
+        )
+
         coros: list = []
         if fetch_evinterface:
             coros.append(self.api.get_evinterface())

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import logging
+
 from homeassistant.components.number import NumberDeviceClass, NumberEntity, NumberMode
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST, UnitOfElectricCurrent
@@ -12,6 +14,8 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DEFAULT_CURRENT_STEP_A, DOMAIN, MAX_CHARGE_CURRENT_A
 from .coordinator import PeblarDataUpdateCoordinator
+
+_LOGGER = logging.getLogger(__name__)
 
 
 class PeblarChargeCurrentLimit(CoordinatorEntity[PeblarDataUpdateCoordinator], NumberEntity):
@@ -51,6 +55,7 @@ class PeblarChargeCurrentLimit(CoordinatorEntity[PeblarDataUpdateCoordinator], N
 
     async def async_set_native_value(self, value: float) -> None:
         """Set the charge current limit (converts A to mA for the API)."""
+        _LOGGER.debug("Setting ChargeCurrentLimit to %.3f A (%d mA)", value, int(value * 1000))
         updated = await self.coordinator.api.patch_evinterface({"ChargeCurrentLimit": int(value * 1000)})
         if isinstance(updated, dict) and updated:
             self.coordinator.data["evinterface"].update(updated)

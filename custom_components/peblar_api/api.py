@@ -106,6 +106,7 @@ class PeblarApiClient:
         if not isinstance(payload, dict):
             raise PeblarApiClientError("Unexpected response format from Peblar API")
 
+        _LOGGER.debug("GET /%s response: %s", endpoint, payload)
         return payload
 
 
@@ -149,6 +150,7 @@ class PeblarApiClient:
         if not isinstance(payload, dict):
             raise PeblarApiClientError("Unexpected response format from Peblar API")
 
+        _LOGGER.debug("PATCH /%s payload: %s | response: %s", endpoint, data, payload)
         return payload
 
 
